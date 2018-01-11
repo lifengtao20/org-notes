@@ -1,0 +1,3 @@
+** 高分辨率 HiDpi屏幕中awesome的字体调整
+   echo 'Xft.dpi: 160.0' >> ~/.Xresources
+   xrdb -merge ~/.Xresources

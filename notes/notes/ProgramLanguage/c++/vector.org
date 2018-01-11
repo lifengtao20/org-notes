@@ -1,0 +1,13 @@
+* 实例
+** 一边遍历，一边删除（使用 erase 函数及其返回值）
+   1. 使用 erase 函数返回值
+      #+BEGIN_SRC c++
+        std::vector<int> vec;
+        for (auto it = vec.begin(); it != vec.end()) {
+          if (IsWillDelete(*it)) {
+            it = vec.erase(it);
+          } else {
+            it++;
+          }
+        }
+      #+END_SRC

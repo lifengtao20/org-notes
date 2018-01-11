@@ -1,0 +1,10 @@
+* 背景
+  输出到标准输出、标准错误和文件。
+* 示例
+** 输出并不换行
+*** print 最后加,
+   print "aa",
+   print " bb"
+*** sys.stdout.write
+    sys.stdout.write("aa")
+    sys.stdout.write(" bb\n")

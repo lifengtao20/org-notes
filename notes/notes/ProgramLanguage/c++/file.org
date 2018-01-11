@@ -1,0 +1,38 @@
+* 简介
+  这里介绍 C++ 中，各类文件的处理。
+* 示例
+** 将文件一次加载到内存中
+   思路：使用二进制方式打开，先探测文件大小，分配足够的内存，再一次性读取。
+   #+BEGIN_SRC c++
+    #include <iostream>  
+    #include <fstream>  
+    using namespace std;  
+    
+    int main () {  
+      filebuf *pbuf;  
+      ifstream filestr;  
+      long size;  
+      char * buffer;  
+      // 要读入整个文件，必须采用二进制打开   
+      filestr.open ("test.txt", ios::binary);  
+      // 获取filestr对应buffer对象的指针   
+      pbuf=filestr.rdbuf();  
+      
+      // 调用buffer对象方法获取文件大小  
+      size=pbuf->pubseekoff (0,ios::end,ios::in);  
+      pbuf->pubseekpos (0,ios::in);  
+      
+      // 分配内存空间  
+      buffer=new char[size];  
+       
+      // 获取文件内容  
+      pbuf->sgetn (buffer,size);  
+      
+      filestr.close();  
+      // 输出到标准输出  
+      cout.write (buffer,size);  
+      
+      delete []buffer;  
+      return 0;  
+    }  
+   #+END_SRC

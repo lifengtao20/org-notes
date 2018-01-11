@@ -1,0 +1,6 @@
+索引库建立程序的配置：
+[serving@11.251.208.9
+192.168.5.1 /serving/huichuan_build_index/config/convert_config/huichuan_brand]
+
+索引从数据库中dump出的数据的目录：/serving/huichuan_build_index/jobs/huichuan_brand/huichuan_dump
+索引从数据库dmp数据=>建库的input：/serving/huichuan_build_index/jobs/huichuan_brand/huichuan_brand/input

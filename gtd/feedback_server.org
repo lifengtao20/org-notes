@@ -1,0 +1,6 @@
+* TODO 广告各层级的show/click/charge的数据不对
+* TODO 广告受众的dmp数据，需要添加
+  已大致完成，有一些多余的代码，需要清理掉
+  tair_client插入的数据，C++ api无法获取到。
+  C++ api插入的数据，tair_client无法获取到。所以，写了专门写了测试工具。
+

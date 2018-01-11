@@ -1,0 +1,6 @@
+* 导出
+** 导出为 confluence 的 Wiki markup 格式
+   1. 安装 confluence 包
+   2. 执行: org-confluence-export-as_confluence
+** 导出为其他格式
+   C-c C-e

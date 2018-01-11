@@ -1,0 +1,13 @@
+* TODO 软件学习
+** TODO readline => command line editing
+** TODO awesome 快捷键+配置
+** TODO spacemacs内的terminal的使用，尤其是行编辑功能
+** TODO spacemacs内的grep使用，对buffer或目录进行grep
+** spacemacs org-mode
+aabbccdd
+* 工作
+** TODO 对于品牌广告请求，现在dsp的优先级有问题，自有品牌广告应该比mytarget优先级更高
+** TODO 查看inmobi文档，并确定沟通的点
+** TODO brand ad加操作语言定向，测试和上线
+** TODO ad加时间段定向，测试和上线
+** TODO exchange server，ulink加dsp的placement id和time zone

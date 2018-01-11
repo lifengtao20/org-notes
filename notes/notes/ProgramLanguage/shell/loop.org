@@ -1,0 +1,12 @@
+* 奇葩的问题
+** “while read line” + “ssh”总是只能执行一次循环
+*** 问题描述
+   碰到问题的shell：while read line ; do ssh $line 'ls /home'; done < machine_list
+   总是只能对第一行的machine执行ssh命令，然后就退出了。
+*** 原因
+   https://stackoverflow.com/questions/9393038/ssh-breaks-out-of-while-loop-in-bash
+   这是因为ssh从标准输入读取数据，这导致其他行都被ssh取走了，read命令就读不到后面的行，就退出循环了；
+*** 解决方案
+    1.对ssh的标准输入，进行重定向：ssh $USER@$SERVER "cd ${REMOTE_PATH}; mkdir -p $i" < /dev/null
+    2.对ssh加-n参数
+   

@@ -1,0 +1,14 @@
+* tar
+** 简介
+** 命令行参数
+** 实际用法示例
+*** 创建和追加来生成.tar文件
+    需要注意：若加了压缩选项的话，则无法追加，所以，一定是.tar文件。
+    tar -cf test.tar a.txt  #create
+    tar -rf test.tar b.txt  #replenish
+    tar -uf test.tar a.txt  #update
+    tar -tf test.tar        #list the file in tar
+* gzip
+* gunzip
+* 7z
+

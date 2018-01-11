@@ -1,0 +1,6 @@
+* numpy简介
+  numpy是一个python的科学计算库，集成了多种科学计算工具。
+* 实例
+** 期望
+   l = [1, 9, ..., x]
+   numpy.mean(l)

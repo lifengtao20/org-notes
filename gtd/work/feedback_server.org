@@ -1,0 +1,12 @@
+开始时间:<2017-07-17 18:00:00>
+* 将huichuan/feedback_oldb_server的代码合并进i18n_huichuan/feedback_server
+  合并的主要内容是：用户受众dmp数据中的click和show的数据获取和填充
+  i18n_huichuan/feedback_server是从huichuan/feedback_server的r62042拉的分支，之后huichuan/feedback_server加入了豌豆荚的一些内容。
+** DONE signal处理，保证可以安全退出的代码，需要合并
+   CLOSED: [2017-07-24 一 10:55]
+   并没有使用signal，因为使用后，会导致无法ctrl+C退出程序。
+** DONE dmp中的dislike数据，不能同时写，加入elector来控制
+   CLOSED: [2017-07-24 一 10:55]
+   确认暂时不需要dislike数据，去掉了elector
+* 排查广告的 Account层级的click、show、charge等数据，都是0的问题
+* 排查广告的idea层级的publish数据，都是0的问题

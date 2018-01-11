@@ -1,0 +1,11 @@
+* 简介
+  string 是 C++ 中，实现字符串存储和使用的类，相比于char数组或指针，不需要考虑内存的分配和溢出。在成员函数中，实现了字符串查找，遍历，截断等操作。
+* 使用示例
+** 将二进制数据，存储进 string 中
+   #+BEGIN_SRC c++
+// 假定数据已经存储到 char * d 中，且长度为 len
+string s;
+s.assign(d, len);
+// 取用时
+s.data(); s.size();
+   #+END_SRC

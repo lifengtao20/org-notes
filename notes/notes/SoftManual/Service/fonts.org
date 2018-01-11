@@ -1,0 +1,10 @@
+* 添加新字体
+** 系统添加
+   1. sudo mkdir /usr/share/fonts/yahei
+   2. sudo cp /yahei_path/*.ttf /usr/share/fonts/yahei
+   3. sudo chmod 644 /usr/share/fonts/yahei/*
+   4. cd /usr/share/fonts/ ; sudo mkfontscale ; sudo mkfontdir ; sudo fc-cache -fv
+** 单用户添加
+   1. mkdir -p ~/.fonts/yahei
+   2. cp /yahei_path/*.ttf ~/.fonts/yahei
+   3. cd ~/.fonts/yahei ; mkfontscale ; mkfontdir ; fc-cache -fv

@@ -1,0 +1,13 @@
+* 背景
+  curl 是一个 http 客户端，也是一个很有用的 http 测试工具。
+  curl 基于 libcurl 构建，libcurl 是一个很有用的 http 库。
+* 使用示例
+** 打印返回的 http code
+   1. 非 POST 请求使用 -I 参数，示例：
+      curl -I http://www.baidu.com
+      使用 -I 将只打印
+   2. POST 请求，使用 -o - -s -w '\n%{http_code}'，示例：
+      curl -o - -s -w '\n%{http_code}' 'http://www.example.com' -d 'xxxxxx'
+      -o 是将输出，重定向到某个文件，-o -，为重定向到标准输出。
+      -s 是静默模式
+      -w 是输出格式定义，'\n%{http_code}'是输出 http code

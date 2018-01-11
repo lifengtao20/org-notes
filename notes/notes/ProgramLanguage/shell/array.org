@@ -1,0 +1,58 @@
+* 简介
+  shell中其实是没有真正意义上的数组，底层是一个dict来实现的。
+  但是这个dict，若不做特殊声明，只能使用数字作为key。
+* 定义和引用
+** 未声明key的定义
+  a1=(aa bb cc dd ee)
+  echo ${a1[0]}  #output: "aa"
+  echo ${a1[4]}  #output: "ee"
+** 声明key的定义
+   a2=([1]=aa [2]=bb [3]=cc [4]=dd [5]=ee)
+   echo ${a2[0]} #output: ""
+   echo ${a2[1]} #output: "aa"
+   echo ${a2[4]} #output: "dd"
+
+   #跳跃声明
+   a3=([1]=aa [3]=bb [300]=cc)
+   echo ${a3[1]} #output: "aa"
+   echo ${a3[2]} #output: ""
+   echo ${a3[3]} #output: "bb"
+
+   #使用字符串作为key定义，不声明数组，会有问题
+   #未声明
+   a4=(["aa"]="AA" ["bb"]="BB" ["cc"]="CC")
+   echo ${a4["aa"]}  #ouput: "CC"
+   echo ${a4["bb"]}  #ouput: "CC"
+   echo ${a4["cc"]}  #ouput: "CC"
+   #声明
+   declare -A a5  # must be "-A", not "-a"
+   a5=(["aa"]="AA" ["bb"]="BB" ["cc"]="CC")
+   echo ${a5["aa"]}  #ouput: "AA"
+   echo ${a5["bb"]}  #ouput: "BB"
+   echo ${a5["dd"]}  #ouput: ""
+** 未声明，直接赋值
+   a6[1] = "aa"
+   a6[3] = "bb"
+   a6[40] = "cc"
+   echo ${a6[1]}  #output: "aa"
+   echo ${a6[2]}  #output: ""
+   echo ${a6[3]}  #output: "bb"
+   echo ${a6[40]}  #output: "cc"
+
+   #使用字符串做key，不声明数组，会有问题
+   a7["AA"] = "aa"
+   a7["B"] = "bb"
+   a7["DDDD"] = "cc"
+   echo ${a7["AA"]}  #output: "cc"
+   echo ${a7["BB"]}  #output: "cc"
+   echo ${a7["B"]}  #output: "cc"
+   echo ${a7["DDDD"]}  #output: "cc"
+** 声明再赋值
+   declare -A a
+   a7["AA"] = "aa"
+   a7["B"] = "bb"
+   a7["DDDD"] = "cc"
+   echo ${a7["AA"]}  #output: "aa"
+   echo ${a7["BB"]}  #output: ""
+   echo ${a7["B"]}  #output: "bb"
+   echo ${a7["DDDD"]}  #output: "cc"

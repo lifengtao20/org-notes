@@ -1,0 +1,14 @@
+* 实例
+** 显示列名
+   在执行 sql 前，先执行：set hive.cli.print.header=true;
+** 列转为行显示
+   在执行 sql 前，先执行：set hive.cli.print.row.to.vertical=true;
+** 显示行数
+   在执行 sql 前，先执行：set hive.cli.print.row.to.vertical=true;
+** 输出结果到文件
+   hive -e 'select * from test;' > test.csv
+   使用 api 的话，不能直接输出到文件，因为hive使用 ^A 符号作为域的分隔符：
+   1. python
+      line.split('\x01')
+   2. java
+      split("\\u0001")

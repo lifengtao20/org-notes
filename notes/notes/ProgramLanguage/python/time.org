@@ -1,0 +1,75 @@
+* 模块背景
+  import time
+* 其他功能
+** 休眠X秒
+   >>> time.sleep(x)
+** 计时
+   >>> # 若为程序中，第一次调用 time.clock，则返回程序已经运行的时间
+   >>> time.clock()
+   >>> do_something()
+   >>> # 若不是第一次调用 time.clock()，则返回本次调用与上次调用的时间
+   >>> time.clock()
+* 获取时间
+** unix timestamp
+   >>> now = time.time()
+** 获取 local time tuple
+   >>> # 相当于 time.localtime(time.time())
+   >>> print time.localtime()
+** 获取 0 timezone time tuple
+   >>> # 相当于 time.gmtime(time.time())
+   >>> print time.gmtime()
+** 获取固定格式的时间字符串
+   >>> # 相当于 time.asctime(time.localtime())
+   >>> print time.asctime()
+   >>> # 相当于 time.ctime(time.time())
+   >>> print time.ctime()
+* 时间转换
+** unix timestamp => 本地 time tuple
+   >>> now_struct = time.localtime(time.time())
+   >>> print now_struct
+   time.struct_time(tm_year=2015, tm_mon=6, tm_mday=1, tm_hour=18, tm_min=9, tm_sec=9, tm_wday=0, tm_yday=152, tm_isdst=0)
+** unix timestamp => 0时区的 time tuple
+   >>> now_struct = time.gmtime(time.time())
+   >>> print now_struct
+   time.struct_time(tm_year=2015, tm_mon=6, tm_mday=1, tm_hour=18, tm_min=9, tm_sec=9, tm_wday=0, tm_yday=152, tm_isdst=0)
+** TODO unix timestamp => X时区的 time tuple
+** 本地 time tuple => unix timestamp
+   >>> now = time.mktime(now_struct)
+   >>> print now
+   1511111952.0
+** TODO 0时区 time tuple => unix timestamp
+** TODO X时区 time tuple => unix timestamp
+** time tuple => string
+   1.固定格式
+     >>> print time.asctime(time.localtime())
+   2.指定格式
+     >>> print time.strftime("%Y-%m-%d", now_struct)
+     |------------+-------------------------------------------|
+     | 格式化符号 | 含义                                      |
+     |------------+-------------------------------------------|
+     | %y         | 两位数年份(00-99)                         |
+     | %Y         | 四位数年份(0000-9999)                     |
+     | %m         | 月份(01-12)                               |
+     | %d         | 月内的一天(01-31)                         |
+     | %H         | 24小时制(00-23)                           |
+     | %I         | 12小时制(01-12)                           |
+     | %M         | 分钟数(00-59)                             |
+     | %S         | 秒数(00-59)                               |
+     | %a         | 本地简化星期名称                          |
+     | %A         | 本地完整星期名称                          |
+     | %b         | 本地简化月份名称                          |
+     | %B         | 本地完整月份名称                          |
+     | %c         | 本地对应的日期表示和时间表示              |
+     | %j         | 年内的天数(001-366)                       |
+     | %p         | 本地A.M.或P.M.的等价符号                  |
+     | %w         | 星期几(0-6)，星期天为星期开始             |
+     | %U         | 一年中的星期数(00-54)，星期天为星期开始   |
+     | %W         | 一年中的星期数(00-53)，星期一为星期的开始 |
+     | %x         | 本地对应的日期表示                        |
+     | %X         | 本地对应的时间表示                        |
+     | %Z         | 当前时区的名称                            |
+     | %%         | %号本身                                   |
+     |------------+-------------------------------------------|
+** unix timestamp => string
+   1.固定格式
+     >>> print time.ctime(time.time())

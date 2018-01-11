@@ -1,0 +1,29 @@
+* 背景
+  这个笔记，是对 std 中定义的，多个排序算法。1.搭配不同的容器，2.使用排序函数或仿函数，来排序的过程。
+* 排序函数、仿函数、比较运算符重载
+** 排序函数
+** 仿函数
+   #+BEGIN_SRC c++
+    class SortByAdxCpm {
+    public:
+      SortByAdxCpm(SearcherContext *c) : c_(c) {};
+      bool operator()(const Ad* l, const Ad* r) {
+        if (l->detail_info().adx_cpm() != r->detail_info().adx_cpm()) {
+          VLOG(1) << "l->detail_info().adx_cpm() != r->detail_info().adx_cpm()";
+          return (l->detail_info().adx_cpm() > r->detail_info().adx_cpm());
+        } else {
+          base::PseudoRandom random_;
+          c_->random.Reset(c->timestamp);
+          VLOG(1) << "l->detail_info().adx_cpm() == r->detail_info().adx_cpm()" << c_->random.GetInt(0, 1);
+          return c_->random.GetInt(0, 1) == 0;
+        }
+      }
+    private:
+      SearcherContext *c_;
+    };
+    std::sort(c->ad_result[slot_id].begin(), c->ad_result[slot_id].end(), SortByAdxCpm(c));
+   #+END_SRC
+* vector
+* array
+* map
+* unordered_map

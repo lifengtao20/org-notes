@@ -1,0 +1,3 @@
+* order 子句——对字段排序（顺序或逆序）
+  order by xxx
+  order by xxx desc

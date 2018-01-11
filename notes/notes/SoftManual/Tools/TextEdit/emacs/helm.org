@@ -1,0 +1,4 @@
+* project概念
+** project判定
+   1.存在 .git 的目录及其子目录，会被认为是一个project；
+   2.存在 .projectile 文件的目录及其子目录，会被认为是一个project；

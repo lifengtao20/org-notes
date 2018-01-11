@@ -1,0 +1,54 @@
+* fonts
+** 设置方法
+*** 打印系统字体列表
+    #+BEGIN_SRC emacs-lisp
+    (print (font-family-list))
+    #+END_SRC
+*** 设置英文字体（见设置默认字体）
+*** 设置中文字体
+    #+BEGIN_SRC emacs-lisp
+    ;设置中文字体方法一
+      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+        (set-fontset-font (frame-parameter nil 'font)
+                          charset (font-spec :family "文泉驿等宽微米黑"
+                                            :size 16)))
+    ;;设置中文字体方法二
+      (set-fontset-font "fontset-default"
+                        (cons (decode-char 'ucs #x4e00)
+                              (decode-char 'ucs #x9fff))
+                        "-*-文泉驿等宽微米黑-*-*-*-*-16-*-*-*-*-*-*-*")
+  #+END_SRC
+*** 设置默认字体
+    #+BEGIN_SRC emacs-lisp
+    dotspacemacs-default-font '("Source Code Pro"
+                               :size 14
+                               :weight normal
+                               :width normal
+                               :powerline-scale 1.1)
+    #+END_SRC
+** 英文字体选择
+*** Source Code pro
+    adobe提供的免费字体，字母等宽且l与1,0与o之前的区分非常明显；
+    下载地址:https://github.com/adobe-fonts/source-code-pro#font-installation-instructions
+    缺点：不包含中文字体
+** 中文字体选择
+** 中英文字体选择
+*** Inziu losvka （备选）
+    等宽，支持多数西欧语言，高识别度，中文，汉字宽度是西文的两倍
+*** Inconsolata  
+    等宽，支持多数西欧语言，高识别度，中文，汉字宽度是西文的两倍
+    下载链接：https://github.com/google/fonts/blob/master/ofl/inconsolata/
+** 问题解决
+**** 显示缺少Source Code pro字体
+     先去下载编译好的Source Code pro字体，然后解压缩，在某个文件浏览器中，点击SourceCodeVariable-xx.otf文件，用字体管理器打开该文件后，选择“安装”
+* 看代码
+** 折叠
+*** 启用了evil，可以使用vim的折叠快捷键
+    | 快捷键 | 说明               |
+    |--------+--------------------|
+    | za     | 切换当前级别的展开 |
+    | zr     | 展开所有           |
+    | zm     | 关闭所有           |
+    | ..     |                    |
+** 跳转（和查找）
+** 关注区域（narrow）
