@@ -1,0 +1,13 @@
+* json模块
+  json 模块，是 python 的标准 json 解析和生成库；作为标准库之一，一般不需要安装，直接可用。
+** 从字符串生成 json 类
+   json.loads("{}") => 从字符串加载
+   json.load()      => 从文件流 fp 加载
+** 从 json 类，转为 json 字符串
+   json.dumps(j) => 生成字符串
+   json.dump(j)  => 生成文件流 fp
+** 从 dict 等 python 数据结构，转为 json 字符串
+   m = {}
+   json.dumps(m)
+** 从 dict 等 python 数据结构，转为 json 类
+** 操作 json 类的
