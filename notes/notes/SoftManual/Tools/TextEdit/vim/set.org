@@ -1,0 +1,4 @@
+* vim
+  | 字段        | 含义                                                     | 示例                   | 默认值 |
+  | textwidth   | 自动换行，若行字符数超过 n，则自动加换行符               | set textwidth=80       |    500 |
+  | wrap/nowrap | 自动折行，在行过长时，根据屏幕宽度，自动折叠显示成多行； | set wrap 或 set nowrap | wrap   |
