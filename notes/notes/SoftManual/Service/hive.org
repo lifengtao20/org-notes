@@ -12,3 +12,54 @@
       line.split('\x01')
    2. java
       split("\\u0001")
+* sql 语法
+** 类型转换
+*** 隐式类型转换表
+空   	bl 	tinyint 	si 	int 	bigint 	float 	double 	dm 	string 	vc 	ts 	date 	ba
+boolean 	true 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false
+tinyint 	false 	true 	true 	true 	true 	true 	true 	true 	true 	true 	false 	false 	false
+smallint 	false 	false 	true 	true 	true 	true 	true 	true 	true 	true 	false 	false 	false
+int 	false 	false 	false 	true 	true 	true 	true 	true 	true 	true 	false 	false 	false
+bigint 	false 	false 	false 	false 	true 	true 	true 	true 	true 	true 	false 	false 	false
+float 	false 	false 	false 	false 	false 	true 	true 	true 	true 	true 	false 	false 	false
+double 	false 	false 	false 	false 	false 	false 	true 	true 	true 	true 	false 	false 	false
+decimal 	false 	false 	false 	false 	false 	false 	false 	true 	true 	true 	false 	false 	false
+string 	false 	false 	false 	false 	false 	false 	true 	true 	true 	true 	false 	false 	false
+varchar 	false 	false 	false 	false 	false 	false 	true 	true 	true 	true 	false 	false 	false
+ts 	false 	false 	false 	false 	false 	false 	false 	false 	true 	true 	true 	false 	false
+date 	false 	false 	false 	false 	false 	false 	false 	false 	true 	true 	false 	true 	false
+binary 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false 	false 	true 
+*** 显示类型转换
+    CAST
+    (1)、如果将浮点型的数据转换成int类型的，内部操作是通过round()或者floor()函数来实现的，而不是通过cast实现！
+　　(2)、对于BINARY类型的数据，只能将BINARY类型的数据转换成STRING类型。如果你确信BINARY类型数据是一个数字类型(a number)，这时候你可以利用嵌套的cast操作，比如a是一个BINARY，且它是一个数字类型，那么你可以用下面的查询：
+1 	SELECT (cast(cast(a as string) as double)) from src;
+
+我们也可以将一个String类型的数据转换成BINARY类型。
+　　(3)、对于Date类型的数据，只能在Date、Timestamp以及String之间进行转换。下表将进行详细的说明：
+**** 时间类型转换表
+     有效的转换 	结果
+cast(date as date) 	返回date类型
+cast(timestamp as date) 	timestamp中的年/月/日的值是依赖与当地的时区，结果返回date类型
+cast(string as date) 	如果string是YYYY-MM-DD格式的，则相应的年/月/日的date类型的数据将会返回；但如果string不是YYYY-MM-DD格式的，结果则会返回NULL。
+cast(date as timestamp) 	基于当地的时区，生成一个对应date的年/月/日的时间戳值
+cast(date as string) 	date所代表的年/月/日时间将会转换成YYYY-MM-DD的字符串。
+** 函数
+*** 字符串函数
+    1. length 函数
+       #+BEGIN_SRC sql
+      语法: length(string A)  
+      返回值: int  
+      说明：返回字符串A的长度  
+      举例：  
+      hive> select length(‘abcedfg’) from dual; 
+       #+END_SRC
+    2. reverse 函数
+       #+BEGIN_SRC sql
+      语法: reverse(string A)  
+      返回值: string  
+      说明：返回字符串A的反转结果  
+      举例：  
+      hive> select reverse(‘abcedfg’) from dual;  
+      gfdecba 
+       #+END_SRC

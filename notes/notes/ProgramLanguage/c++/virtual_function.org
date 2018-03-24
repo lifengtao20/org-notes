@@ -1,0 +1,3 @@
+* 概述
+  virtual_fucntion 是为了使用父类的指针，调用函数时，实际是使用的子类的实现。
+  在子类的 virtaul function 中，若想调用父类内被重载的函数，可以通过 FatherClassName::FunctionName()。

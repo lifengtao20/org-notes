@@ -1,0 +1,20 @@
+* 高亮
+** 高亮特定字符串
+   match {group} /pattern/
+   2match {group} /pattern/
+   3match {group} /pattern/
+   输入 match 后，可以按 tab，来自动补全 group 部分，不用记忆各 group 的名字
+* 检索
+** 检索多个字符串
+   例如，同时检索"123"/"456"/"789"
+   /123\|456\|789
+** 设置高亮
+*** 开启/关闭检索高亮
+    1. 配置文件中，对修改后的所有 vim session 有效
+       set hlsearch
+    2. 在命令行，在当前 vim session 中临时打开
+       set hlsearch
+    3. 在命令行，在当前 vim session 中临时关闭
+       set nohlsearch
+    4. 在命令行中，设置颜色
+       hi
