@@ -20,6 +20,35 @@
    | 忽略Python相关 | *.pyc *.pyo *.pyd            |
    | 忽略svn        | .svn/                        |
    |----------------+------------------------------|
+** 设置代理
+   通过 VPS 搭建代理相关内容，可以查看 shadow_socks.org
+   假定已搭建好 sock5 代理 127.0.0.1:1080
+*** 设置 http 代理
+    执行命令：
+    git config --global http.proxy 'socks5://127.0.0.1:1080' 
+    git config --global https.proxy 'socks5://127.0.0.1:1080'
+    执行后，可以看到 ~/.gitconfig 文件中加入了以下内容：
+    #+BEGIN_SRC
+[http]
+	proxy = socks5://127.0.0.1:1080
+[https]
+	proxy = socks5://127.0.0.1:1080
+    #+END_SRC
+*** 设置 git 协议代理
+    执行命令：
+    git config --global core.gitproxy "git-proxy"
+    git config --global socks.proxy "127.0.0.1:1080"
+    执行后，可以看到 ~/.gitconfig 文件中加入了以下内容：
+    #+BEGIN_SRC
+[core]
+	gitproxy = git-proxy
+[socks]
+	proxy = 127.0.0.1:1080
+    #+END_SRC
+*** 通过设置 ssh 代理，来设置 git 协议代理
+    在 Host github.com 的配置中，加入下面一行：
+    ProxyCommand nc -x 127.0.0.1:1070 %h %p
+    
 * 实际用法示例
 ** 比较
 *** 比较当前版本和某个版本
@@ -53,3 +82,36 @@
     git diff --cached test
 *** 只查看统计信息，不显示具体diff的内容
     git diff --stat rev1 rev2
+** 将现有代码，提交到 github
+*** github 上是一个新建的项目
+    git remote add origin https://github.com/xxx/y.git
+    git push -u master origin
+** github 使用 git 协议 + ssh 协议
+*** 生成私钥和公钥
+    - 执行命令 ssh-gen
+      在让输入 token 的地方，可以设置一个简单的密码，或者直接回车不做设置。
+      会在目录下，生成 id_rsa 和 id_rsa.pub 两个文件，即为私钥和公钥。
+*** 上传公钥
+    - 进入 github 网站，点击右上角的个人头像，进入个人页面
+    - 在个人页面的左上角，点击 "Edit Profile"，进入 User Profile 的页面
+    - 在 User Profile 页面，在左侧的设置分类中，点击 "SSH and GPG keys"，进入公钥管理页面
+    - 在公钥管理页面，点击添加 ssh key，将 id_rsa.pub 的内容拷贝出来，复制进去，点击添加
+*** 设置 ssh config
+    #+BEGIN_SRC
+    Host github.com
+    hostname github.com
+    user git
+    IdentityFile ~/.ssh/key/github/id_rsa
+    IdentitiesOnly yes
+    #+END_SRC
+*** 测试
+    ssh -T git@github.com
+*** clone 仓库
+    git clone git@github.com:xxxx/my_project.git
+*** 注意事项
+   ssh config 的配置中 Host 和 hostname 都必须是 github.com；否则匹配不到配置内容。
+** 添加远程分支，并建立已有本地分支和远程分支的联系
+   假定已有的远程分支为 origin/master ，本地分支为 master
+   git remote add origin git@github.com:xxx/yy.git
+   git fetch origin
+   git push -u origin master

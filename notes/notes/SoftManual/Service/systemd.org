@@ -1,0 +1,23 @@
+* 实例
+** 启动、停止、开启、关闭服务
+   #启动，停止，重启服务
+   systemctl start  foo.service
+   systemctl stop foo.service
+   systemctl restart foo.service
+
+   #查看一个服务的状态
+   systemctl status foo.service
+
+   #开机时启用一个服务
+   systemctl enable foo.service
+
+   #开机时关闭一个服务
+   systemctl disable foo.service
+
+   #查看服务是否开机启动
+   systemctl is-enabled foo.service
+
+
+   例：开机启动sshd服务
+
+   systemctl enable sshd.service

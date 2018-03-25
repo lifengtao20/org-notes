@@ -1,0 +1,9 @@
+* 介绍
+* 实例
+** 指定下次启动的系统（主要是为了蓝牙键盘，启动到 Windows 系统）
+   - 修改 /etc/default/grub，在里面添加：
+     GRUB_DEFAULT=saved
+   - 指定下次启动的系统
+     sudo grub-reboot '2' # 数字和 grub 界面上显示的一致，如果是二级选项，则用 '3>1' <=> SUBMENU>MENUENTRY 这种格式
+   - 重启系统
+     sudo reboot
