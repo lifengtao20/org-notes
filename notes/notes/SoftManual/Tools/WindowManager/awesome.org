@@ -1,3 +1,33 @@
+* 配置文件
+** 测试方法
+   使用 Xephyr 程序和 awmtt 脚本，来测试 awesome 的新配置文件。
+   - 安装 Xephyr
+   - 从 github 上下载 awmtt 脚本，并放到 ~/bin 目录中，确保 ~/bin 在 PATH 环境变量中。
+   - 根据系统生成 X unix socket 的文件位置，修改 awmtt 脚本
+     以 debian 9 为例，需要修改为：
+     #+BEGIN_SRC bash
+        #if [[ ! -f "/tmp/.X${i}-lock" ]]; then
+        if [[ ! -S "/tmp/.X11-unix/X${i}" ]]; then
+     #+END_SRC
+   - 拷贝当前 ~/.config/awesome/rc.lua 为 ~/.config/awesome/rc.lua.test，并在 rc.lua.test 上做修改
+   - 执行以下命令，来进行测试：
+     awmtt start
+     这样，就会打开一个嵌套窗口，来在其中，用 rc.lua.test 配置文件，启动 awesome
+   - 可以直接在嵌套窗口中，点击关闭按钮，来退出测试。
+* 实例
 ** 高分辨率 HiDpi屏幕中awesome的字体调整
-   echo 'Xft.dpi: 160.0' >> ~/.Xresources
-   xrdb -merge ~/.Xresources
+   - 设置 ~/.Xresource 的内容为：
+     #+BEGIN_SRC
+Xft.dpi: 180
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+     #+END_SRC
+   - 设置 ~/.xinitrc 的内容为：
+     #+BEGIN_SRC
+xrdb -merge ~/.Xresources
+     #+END_SRC
+ 
