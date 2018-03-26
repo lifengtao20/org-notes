@@ -112,6 +112,8 @@
    ssh config 的配置中 Host 和 hostname 都必须是 github.com；否则匹配不到配置内容。
 ** 添加远程分支，并建立已有本地分支和远程分支的联系
    假定已有的远程分支为 origin/master ，本地分支为 master
-   git remote add origin git@github.com:xxx/yy.git
-   git fetch origin
-   git push -u origin master
+   1. git remote add origin git@github.com:xxx/yy.git
+   2. git branch --set-upstream-to=origin/master
+      或者
+      git fetch origin
+      git push -u origin master
