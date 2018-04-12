@@ -5,4 +5,35 @@
    2. 执行: org-confluence-export-as_confluence
 ** 导出为其他格式
    C-c C-e
+** 避免过长的行被自动折行
+   #+BEGIN_SRC elisp
+     (setq org-ascii-text-width 10000)
+  #+END_SRC
+** 保留内容中的换行符
+   简单模板对应快捷输入的首字母
+
+   输入 < 后面跟一个字母，然后按 TAB 键，就可以生成对应的模板。（eg: <e + TAB ）
+
+    <s #+BEGIN_SRC ... #+END_SRC 区域内为代码 按 =,'= 进入主模式编辑，在按 =SPC o '= 退出
+    <e #+BEGIN_EXAMPLE ... #+END_EXAMPLE 例子，保留源格式，也可以用每行以：开始的方式也
+    <q #+BEGIN_QUOTE ... #+END_QUOTE 区域内为引用格式
+    <v #+BEGIN_VERSE ... #+END_VERSE 保留区域内换行
+    <c #+BEGIN_CENTER ... #+END_CENTER 居中区域
+    <l #+BEGINLaTeX … #+ENDLaTeX
+    <L #+LaTeX:
+    <h #+BEGINHTML … #+ENDHTML
+    <H #+HTML:
+    <a #+BEGINASCII … #+ENDASCII
+    <A #+ASCII:
+    <i #+INDEX: line
+    <I #+INCLUDE: line
+** 字体
+| =代码=      | 代码(等宽字) |
+| ~代码~      | 代码(等宽字) |
+| *加粗*      | 加粗 =,xb=   |
+| /倾斜/      | 倾斜         |
+| _下划线_    | 下划线       |
+| +删除+      | 删除         |
+| 上标^{上标} | 上标         |
+| 下标_{下标} | 下标         |
 * 时间管理
