@@ -115,6 +115,15 @@
 (setq interprogram-paste-function 'copy-from-osx) 
 ;;end 设置剪切板共享 
     #+END_SRC
+** 翻译
+*** 使用 google translate 网络词典
+    直接启用 spacemacs-language 这个 layer。
+    在 .spacemacs 文件的 dotspacemacs-configuration-layers 字段中加入 layer。
+    设置 source 和 target language:
+*** 使用 youdao dict
+    直接启用 chinese 这个 layer。
+    在 .spacemacs 文件的 dotspacemacs-configuration-layers 字段中加入 layer。
+*** 使用 sdcv + 本地字典
 * 看代码
 ** 折叠
 *** 启用了evil，可以使用vim的折叠快捷键
